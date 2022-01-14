@@ -68,7 +68,7 @@ var result = RLockable.of(redissonClient.getLock("myLock"), () -> {
         .withTimeUnit(TimeUnit.SECONDS)
         .withWaitTime(30)
         .withInterruptedExceptionSupplier(e -> {
-            log.error("Interrupted waiting for lock: {}", this.config.getLockPrefix() + billPaymentId);
+            log.error("Interrupted waiting for lock: myLock");
             return new CustomException(...);
         })        
         .orElse("non-acquired-lock-result")
