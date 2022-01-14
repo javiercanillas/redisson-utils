@@ -9,14 +9,15 @@ import java.util.function.Supplier;
 
 /**
  * This class helps when dealing with Lock, in this case the Redis locks. For example:
- * <code>
+ * <pre>
+ * {@code
  * RLockable.of(redissonClient.getLock("myLockId"), () -> {
  *     Add code to execute during lock contention
  * }).orElse(null);
- *
+ * }
+ * </pre>
  * Check methods to customization
- * </code>
- * @param <T>
+ * @param <T> return Object type
  */
 public final class RLockable<T> {
     private final RLock lockObject;
@@ -36,7 +37,7 @@ public final class RLockable<T> {
      * Throw this method you start creating an instance of this.
      *
      * @param lockObject     a {@link RLock} object. Must be not null.
-     * @param executionBlock a {@link Supplier<T>} with the code to execute while locked. Must be not null.
+     * @param executionBlock a {@link Supplier} of {@code T} with the code to execute while locked. Must be not null.
      * @param <T>            The type to be returned by executionBlock
      * @return a {@link RLockable} object for further configuration or execution
      */
@@ -131,17 +132,14 @@ public final class RLockable<T> {
     /**
      * If lock was acquired, execute and returns the executionBlock result, otherwise otherwise throws an exception
      * produced by the exception supplying function.
-     *
-     * @param otherSupplier the supplying function that produces an
-     *                      exception to be thrown
+     * @param otherSupplier the supplying function that produces an exception to be thrown. A method reference to the
+     *                      exception constructor with an empty argument list can be used as the supplier. For example,
+     *                      {@code IllegalStateException::new}
      * @param <X> type of exception
      * @return execute and returns the executionBlock result, if present, otherwise the result produced by the
      * supplying function
      * @throws RuntimeInterruptedException if interrupted while waiting to get lock
      * @throws X                           If lock was not acquired
-     * @apiNote A method reference to the exception constructor with an empty argument
-     * list can be used as the supplier. For example,
-     * {@code IllegalStateException::new}
      */
     public <X extends Throwable> T orElseThrow(final Supplier<? extends X> otherSupplier) throws RuntimeInterruptedException, X {
         Objects.requireNonNull(otherSupplier, "otherSupplier must not be null.");
