@@ -15,13 +15,13 @@
 
     <groupId>io.github.javiercanillas</groupId>
     <artifactId>redisson-utils</artifactId>
-    <version>0.1.3-SNAPSHOT</version>
+    <version>0.1.3</version>
 
     <scm>
         <url>https://github.com/javiercanillas/redisson-utils</url>
         <connection>scm:git:git://github.com/javiercanillas/redisson-utils.git</connection>
         <developerConnection>scm:git:git@github.com:javiercanillas/redisson-utils.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>redisson-utils-0.1.3</tag>
     </scm>
 
     <distributionManagement>
