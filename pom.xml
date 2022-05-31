@@ -51,6 +51,12 @@
             <artifactId>redisson</artifactId>
             <version>[2.9,)</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>net.bytebuddy</groupId>
+                    <artifactId>byte-buddy</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -61,7 +67,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.4.0</version>
+            <version>4.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
